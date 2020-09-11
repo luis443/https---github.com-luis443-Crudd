@@ -1,0 +1,77 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-0">
+                <h5 class="display-5 text-center" style="margin-top: 15px;"><img style="width: 30px;"> CRUD de Usuarios </h5>
+                <form name="loginForm" [formGroup]="formGroup" novalidate>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">
+                          <span style="color: red;" *ngIf="formGroup.get('usuario').hasError('required')">
+                            *
+                        </span>
+                          Usuario</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" formControlName="usuario">
+                        </div>
+
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">
+                          <span style="color: red;" *ngIf="formGroup.get('correo').hasError('required')">
+                            *
+                        </span>
+                          Correo</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" formControlName="correo">
+                        </div>
+
+                        <span style="color: red;" *ngIf="!formGroup.get('correo').hasError('required') &&
+                          formGroup.get('correo').hasError('email')">
+                            por favor ingrese un correo valido
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button color="accent" class="btn btn-info" [disabled]="formGroup.invalid" (click)="Agregar()">
+                          Guardar
+                      </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-md-10 offset-md-0">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Usuario</th>
+                                <th>Correo</th>
+                                <th colspan="2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="Lista.length ==0" [class.text-danger]="Lista.length==0">
+                                <td class="font-italic text-center" colspan="5">
+                                    No hay registros agregados
+                                </td>
+                            </tr>
+                            <tr *ngFor="let item of Lista let i=index;">
+                                <td style="width: 10%;">{{item.id}}</td>
+                                <td style="width: 10%;">{{item.usuario}}</td>
+                                <td style="width: 25%;">{{item.correo}}</td>
+                                <td style="width: 11%;">
+                                    <a class="btn btn-sm btn-info text-white" (click)="editar(item)">Actualizar</a>
+                                    <a class="btn btn-sm btn-danger text-white ml-1" (click)="eliminar(i)">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
