@@ -70,9 +70,6 @@ this.LimpiarVariables();
         timer: 1500
       })
     }
-
-
-
   }
 
   editar(item:any):void{
